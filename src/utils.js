@@ -156,6 +156,10 @@ function ifUndefined(val1, val2) {
  * @param {Function} handler
  */
 function addEventListeners(target, types, handler) {
+    if (!target.addEventListener) {
+        return;
+    }
+
     each(splitStr(types), function(type) {
         target.addEventListener(type, handler, false);
     });
@@ -168,6 +172,10 @@ function addEventListeners(target, types, handler) {
  * @param {Function} handler
  */
 function removeEventListeners(target, types, handler) {
+    if (!target.removeEventListener) {
+        return;
+    }
+
     each(splitStr(types), function(type) {
         target.removeEventListener(type, handler, false);
     });
